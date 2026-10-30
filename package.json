@@ -1,0 +1,17 @@
+{
+  "name": "nexusai-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NexusAI Workspace: 3 Independent Systems - Client (Vercel), Server (Render), Backend (Supabase)",
+  "scripts": {
+    "install:client": "npm install --prefix nexus-ai/client",
+    "install:server": "npm install --prefix nexus-ai/server",
+    "install:backend": "npm install --prefix nexus-ai/backend",
+    "install:all": "npm install --prefix nexus-ai/client && npm install --prefix nexus-ai/server && npm install --prefix nexus-ai/backend",
+    "client": "npm run dev --prefix nexus-ai/client",
+    "server": "npm run start --prefix nexus-ai/server",
+    "test:supabase": "npm run test:supabase --prefix nexus-ai/backend",
+    "db:init": "npm run db:init --prefix nexus-ai/server",
+    "build:client": "npm run build --prefix nexus-ai/client"
+  }
+}

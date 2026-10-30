@@ -1,0 +1,19 @@
+{
+  "name": "nexusai-backend-supabase",
+  "version": "1.0.0",
+  "description": "NexusAI Backend System - Supabase Database & Render Service Layer",
+  "main": "index.js",
+  "scripts": {
+    "test:supabase": "node supabase/verifyConnection.js",
+    "db:init": "node supabase/initSupabase.js"
+  },
+  "keywords": ["supabase", "render", "nexusai", "enterprise", "postgresql"],
+  "author": "NexusAI Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.43.0",
+    "dotenv": "^16.4.5",
+    "pg": "^8.11.5"
+  }
+}
+

@@ -1,0 +1,17 @@
+{
+  "name": "nexusai-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "NexusAI - Enterprise AI-Powered Assistant with 3 Subsystems: Client (Vercel), Server (Render), and Backend (Supabase)",
+  "scripts": {
+    "install:client": "npm install --prefix client",
+    "install:server": "npm install --prefix server",
+    "install:backend": "npm install --prefix backend",
+    "install:all": "npm install --prefix client && npm install --prefix server && npm install --prefix backend",
+    "client": "npm run dev --prefix client",
+    "server": "npm run start --prefix server",
+    "test:supabase": "npm run test:supabase --prefix backend",
+    "db:init": "npm run db:init --prefix server",
+    "build:client": "npm run build --prefix client"
+  }
+}
