@@ -42,8 +42,8 @@ app.use((req, res, next) => {
 
 const { isSupabaseConfigured, SUPABASE_URL } = require('./config/supabase');
 
-// Health check endpoint with infrastructure indicators
-app.get('/api/health', (req, res) => {
+// Health check endpoint with infrastructure indicators (accessible at both /api/health and /health)
+app.get(['/api/health', '/health'], (req, res) => {
   res.status(200).json({
     status: 'online',
     service: 'NexusAI Enterprise Assistant API',
@@ -56,10 +56,23 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Register API Routes
-app.use('/api/auth', require('./routes/authRoutes'));
-app.use('/api/tickets', require('./routes/ticketRoutes'));
-app.use('/api/chat', require('./routes/chatRoutes'));
+// Register API Routes - accessible under both /api/* and root /* (prevents 404 if VITE_API_URL omits /api)
+const authRoutes = require('./routes/authRoutes');
+const ticketRoutes = require('./routes/ticketRoutes');
+const chatRoutes = require('./routes/chatRoutes');
+
+app.use(['/api/auth', '/auth'], authRoutes);
+app.use(['/api/tickets', '/tickets'], ticketRoutes);
+app.use(['/api/chat', '/chat'], chatRoutes);
+
+// Root greeting endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    service: 'NexusAI Enterprise API',
+    status: 'active',
+    documentation: 'See README.md for endpoint specifications'
+  });
+});
 
 // 404 Handler
 app.use((req, res) => {
@@ -90,4 +103,3 @@ async function startServer() {
 }
 
 startServer();
-
